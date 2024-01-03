@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'workout.dart';
+import 'exercise.dart';
 
-class SearchWorkout extends StatefulWidget {
-  const SearchWorkout({Key? key}) : super(key: key);
+class SearchWorkouts extends StatefulWidget {
+  const SearchWorkouts({Key? key}) : super(key: key);
 
   @override
-  State<SearchWorkout> createState() => _SearchWorkoutState();
+  State<SearchWorkouts> createState() => _SearchWorkoutsState();
 }
 
-class _SearchWorkoutState extends State<SearchWorkout> {
+class _SearchWorkoutsState extends State<SearchWorkouts> {
 
   final TextEditingController _controllerName = TextEditingController();
   String _text = '';
@@ -27,10 +27,10 @@ class _SearchWorkoutState extends State<SearchWorkout> {
   }
 
 
-  void getWorkout() {
+  void getExercise() {
     try {
       String name = _controllerName.text;
-      searchWorkouts(update, name);
+      searchExercise(update, name);
     }
     catch(e) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -55,15 +55,15 @@ class _SearchWorkoutState extends State<SearchWorkout> {
             child: TextField(
                 controller: _controllerName,
                 keyboardType: TextInputType.number,
-            decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Workout'
-            )
+                decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: 'Workout'
+                )
             )
         ),
         const SizedBox(height: 10),
         ElevatedButton(
-            onPressed: getWorkout,
+            onPressed: getExercise,
             child: const Text(
                 'Find',
                 style: TextStyle(fontSize: 18)
@@ -76,10 +76,10 @@ class _SearchWorkoutState extends State<SearchWorkout> {
                 child: Flexible(
                     child: Text(
                         _text,
-            style: const TextStyle(fontSize: 18)
-        )
-        )
-        )
+                        style: const TextStyle(fontSize: 18)
+                    )
+                )
+            )
         ),
       ],
 

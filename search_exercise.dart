@@ -30,7 +30,7 @@ class _SearchExercisesState extends State<SearchExercises> {
   void getExercise() {
     try {
       String name = _controllerName.text;
-      searchExercises(update, name);
+      searchExercise(update, name);
     }
     catch(e) {
       ScaffoldMessenger.of(context).showSnackBar(

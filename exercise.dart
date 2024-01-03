@@ -16,7 +16,7 @@ class Exercise {
 
   @override
   String toString() {
-    return '$_ename\n $_weight kg-$_reps reps-$_sets sets';
+    return '$_ename\n$_weight kg-$_reps reps -$_sets sets';
   }
 }
 
@@ -31,14 +31,14 @@ void updateExercises(Function(bool success) update) async {
     if (response.statusCode == 200) {
       final jsonResponse = convert.jsonDecode(response.body);
       for (var row in jsonResponse) {
-        Exercise w = Exercise(
-          int.parse(row['ENbr']),
+        Exercise e = Exercise(
+          int.parse(row['ENBR']),
           row['EName'],
           double.parse(row['Weight']),
           int.parse(row['Reps']),
-          int.parse(row['Sets'])
+          int.parse(row['Sets']),
         );
-        _exercises.add(w);
+        _exercises.add(e);
       }
       update(true);
     }
@@ -49,24 +49,24 @@ void updateExercises(Function(bool success) update) async {
 }
 
 
-void searchExercises(Function(String text) update, String name) async {
+void searchExercise(Function(String text) update, String ename) async {
   try {
-    final url = Uri.https(_baseURL, 'SearchExercises.php', {'EName':name});
+    final url = Uri.https(_baseURL, 'SearchExercise.php', {'EName': ename});
     final response = await http.get(url)
         .timeout(const Duration(seconds: 5));
     _exercises.clear();
     if (response.statusCode == 200) {
       final jsonResponse = convert.jsonDecode(response.body);
       var row = jsonResponse[0];
-      Exercise e = Exercise(
-          int.parse(row['ENbr']),
-          row['EName'],
-          double.parse(row['Weight']),
-          int.parse(row['Reps']),
-          int.parse(row['Sets'])
+      Exercise p = Exercise(
+        int.parse(row['ENBR']),
+        row['EName'],
+        double.parse(row['Weight']),
+        int.parse(row['Reps']),
+        int.parse(row['Sets']),
       );
-      _exercises.add(e);
-      update(e.toString());
+      _exercises.add(p);
+      update(p.toString());
     }
   }
   catch(e) {
@@ -80,24 +80,19 @@ class ShowExercises extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery
-        .of(context)
-        .size
-        .width;
+    double width = MediaQuery.of(context).size.width;
     return ListView.builder(
         itemCount: _exercises.length,
-        itemBuilder: (context, index) =>
-            Column(children: [
-              const SizedBox(height: 10),
-              Container(
-                  color: index % 2 == 0 ? Colors.grey[350] : Colors.grey,
-                  padding: const EdgeInsets.all(5),
-                  width: width * 0.9, child: Row(children: [
-                SizedBox(width: width * 0.15),
-                Flexible(child: Text(_exercises[index].toString(),
-                    style: TextStyle(fontSize: width * 0.045)))
-              ]))
-            ])
+        itemBuilder: (context, index) => Column(children: [
+          const SizedBox(height: 10),
+          Container(
+              color: index % 2 == 0 ? Colors.grey[350]: Colors.grey,
+              padding: const EdgeInsets.all(5),
+              width: width * 0.9, child: Row(children: [
+            SizedBox(width: width * 0.15),
+            Flexible(child: Text(_exercises[index].toString(), style: TextStyle(fontSize: width * 0.045)))
+          ]))
+        ])
     );
   }
 }

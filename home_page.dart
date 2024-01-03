@@ -45,7 +45,7 @@ class _HomeState extends State<Home> {
           IconButton(onPressed: () {
             setState(() {
               Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const SearchWorkout())
+                  MaterialPageRoute(builder: (context) => const SearchWorkouts())
               );
             });
           }, icon: const Icon(Icons.search))

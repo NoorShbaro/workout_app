@@ -5,11 +5,6 @@ import 'package:workout_app/home_page2.dart';
 
 const String _baseURL = 'jaggy-brooms.000webhostapp.com';
 
-void returnMain2() {
-  runApp(const Home2());
-}
-
-
 class Workout {
   int _bid;
   String _pob;
@@ -48,27 +43,7 @@ void updateWorkouts(Function(bool success) update) async {
 }
 
 
-void searchWorkouts(Function(String text) update, String name) async {
-  try {
-    final url = Uri.https(_baseURL, 'SearchWorkout.php', {'POB':name});
-    final response = await http.get(url)
-        .timeout(const Duration(seconds: 5));
-    _workouts.clear();
-    if (response.statusCode == 200) {
-      final jsonResponse = convert.jsonDecode(response.body);
-      var row = jsonResponse[0];
-      Workout w = Workout(
-        int.parse(row['Bid']),
-        row['POB'],
-      );
-      _workouts.add(w);
-      update(w.toString());
-    }
-  }
-  catch(e) {
-    update("can't load data");
-  }
-}
+
 
 
 class ShowWorkout extends StatelessWidget {
@@ -82,11 +57,8 @@ class ShowWorkout extends StatelessWidget {
         itemBuilder: (context, index) => ListTile(
           onTap: () {
             Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context)
-                        => Detail
-                )
+              context,
+              MaterialPageRoute(builder: (context) => const Home2()),
             );
           },
           title: Column(children: [

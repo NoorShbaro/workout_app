@@ -50,7 +50,7 @@ class _Home2State extends State<Home2> {
             });
           }, icon: const Icon(Icons.search))
         ],
-          title: const Text('Choose Workout '),
+          title: const Text('Exercise'),
           centerTitle: true,
         ),
 
