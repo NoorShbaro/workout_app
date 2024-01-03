@@ -19,6 +19,10 @@ class Workout {
 
 List<Workout> _workouts = [];
 
+void addWorkout() {
+
+}
+
 void updateWorkouts(Function(bool success) update) async {
   try {
     final url = Uri.https(_baseURL, 'GetWorkouts.php');
@@ -41,9 +45,6 @@ void updateWorkouts(Function(bool success) update) async {
     update(false);
   }
 }
-
-
-
 
 
 class ShowWorkout extends StatelessWidget {

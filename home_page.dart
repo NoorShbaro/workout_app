@@ -10,6 +10,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
+
   bool _load = false;
 
   void update(bool success) {
@@ -24,6 +26,8 @@ class _HomeState extends State<Home> {
       }
     });
   }
+
+
 
 
   @override
@@ -48,19 +52,25 @@ class _HomeState extends State<Home> {
                   MaterialPageRoute(builder: (context) => const SearchWorkouts())
               );
             });
-          }, icon: const Icon(Icons.search))
+          }, icon: const Icon(Icons.search)),
         ],
-          title: const Text('Choose Workout '),
+          title: const Text('Choose Workout'),
           centerTitle: true,
         ),
 
-        body: _load ? const ShowWorkout() : const Center(
-            child: SizedBox(
-                width: 100,
-                height: 100,
-                child: CircularProgressIndicator()
-            )
-        )
+        body: _load ? const ShowWorkout() :const Column(
+          children: [
+            Center(
+                    child: SizedBox(
+                        width: 100,
+                        height: 100,
+                        child: CircularProgressIndicator()
+                    )
+                ),
+          ],
+        ),
     );
   }
 }
+/*
+*/
