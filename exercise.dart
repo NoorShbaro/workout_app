@@ -96,8 +96,8 @@ class ShowExercises extends StatelessWidget {
               padding: const EdgeInsets.all(5),
               width: width * 0.9, child: Row(children: [
             SizedBox(width: width * 0.15),
-            Flexible(child: Text(_exercises[index].toString(), style: TextStyle(
-                fontSize: width * 0.045,
+            Flexible(child: Text(_exercises[index].toString(), style: const TextStyle(
+                fontSize: 25,
               color: Colors.grey
             )))
           ]))
