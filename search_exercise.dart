@@ -48,7 +48,7 @@ class _SearchExercisesState extends State<SearchExercises> {
         title: const Text('Search for the Exercise',
           style: TextStyle(
               fontSize: 20,
-              color: Colors.white54
+              color: Colors.grey
           ),
         ),
         centerTitle: true,
