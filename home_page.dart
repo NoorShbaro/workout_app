@@ -39,23 +39,37 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(actions: [
-          IconButton(onPressed: !_load ? null : () {
-            setState(() {
-              _load = false;
-              updateWorkouts(update);
-            });
-          }, icon: const Icon(Icons.refresh)),
-          IconButton(onPressed: () {
-            setState(() {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const SearchWorkouts())
-              );
-            });
-          }, icon: const Icon(Icons.search)),
-        ],
-          title: const Text('Choose Workout'),
-          centerTitle: true,
+        appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(70),
+          child: AppBar(actions: [
+            IconButton(onPressed: !_load ? null : () {
+              setState(() {
+                _load = false;
+                updateWorkouts(update);
+              });
+            }, icon: const Icon(Icons.refresh)),
+            IconButton(onPressed: () {
+              setState(() {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => const SearchWorkouts())
+                );
+              });
+            }, icon: const Icon(Icons.search)),
+          ],
+            title: const Padding(
+              padding: EdgeInsets.fromLTRB(20.0,10,20,0),
+              child:  Text(
+                  'Choose Workout',
+                style: TextStyle(
+                  fontSize: 30,
+                  color: Colors.grey
+                ),
+              ),
+            ),
+            centerTitle: true,
+            backgroundColor: Colors.grey[200],
+
+          ),
         ),
 
         body: _load ? const ShowWorkout() :const Column(
@@ -69,6 +83,7 @@ class _HomeState extends State<Home> {
                 ),
           ],
         ),
+      backgroundColor: Colors.grey[500],
     );
   }
 }

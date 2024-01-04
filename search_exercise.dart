@@ -47,6 +47,7 @@ class _SearchExercisesState extends State<SearchExercises> {
       appBar: AppBar(
         title: const Text('Search for the Exercise'),
         centerTitle: true,
+
       ),
       body: Center(child: Column(children: [
         const SizedBox(height: 10),

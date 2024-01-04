@@ -65,11 +65,14 @@ class ShowWorkout extends StatelessWidget {
           title: Column(children: [
             const SizedBox(height: 10),
             Container(
-                color: index % 2 == 0 ? Colors.grey: Colors.grey[350],
+                color: Colors.grey,
                 padding: const EdgeInsets.all(5),
                 width: width * 0.9, child: Row(children: [
               SizedBox(width: width * 0.15),
-              Flexible(child: Text(_workouts[index].toString(), style: TextStyle(fontSize: width * 0.045)))
+              Flexible(child: Text(_workouts[index].toString(), style: TextStyle(
+                  fontSize: width * 0.045,
+                color: Colors.white54
+              )))
             ]))
           ]),
         )

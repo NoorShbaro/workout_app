@@ -11,8 +11,9 @@ class Exercise {
   double _weight;
   int _reps;
   int _sets;
+  String _pob;
 
-  Exercise(this._enbr, this._ename, this._weight, this._reps, this._sets);
+  Exercise(this._pob,this._enbr, this._ename, this._weight, this._reps, this._sets);
 
   bool belongsToWorkout(String workoutName) {
     return _ename.toLowerCase().contains(workoutName.toLowerCase());
@@ -20,7 +21,7 @@ class Exercise {
 
   @override
   String toString() {
-    return '$_ename\n$_weight kg-$_reps reps -$_sets sets';
+    return '$_pob : $_ename\n$_weight kg-$_reps reps -$_sets sets';
   }
 }
 
@@ -36,6 +37,7 @@ void updateExercises(Function(bool success) update) async {
       final jsonResponse = convert.jsonDecode(response.body);
       for (var row in jsonResponse) {
         Exercise e = Exercise(
+          row['POB'],
           int.parse(row['ENBR']),
           row['EName'],
           double.parse(row['Weight']),
@@ -63,6 +65,7 @@ void searchExercise(Function(String text) update, String ename) async {
       final jsonResponse = convert.jsonDecode(response.body);
       var row = jsonResponse[0];
       Exercise p = Exercise(
+        row['POB'],
         int.parse(row['ENBR']),
         row['EName'],
         double.parse(row['Weight']),
@@ -89,11 +92,14 @@ class ShowExercises extends StatelessWidget {
         itemBuilder: (context, index) => Column(children: [
           const SizedBox(height: 10),
           Container(
-              color: index % 2 == 0 ? Colors.grey[350]: Colors.grey,
+              color: Colors.grey[200],
               padding: const EdgeInsets.all(5),
               width: width * 0.9, child: Row(children: [
             SizedBox(width: width * 0.15),
-            Flexible(child: Text(_exercises[index].toString(), style: TextStyle(fontSize: width * 0.045)))
+            Flexible(child: Text(_exercises[index].toString(), style: TextStyle(
+                fontSize: width * 0.045,
+              color: Colors.grey
+            )))
           ]))
         ])
     );
