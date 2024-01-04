@@ -14,6 +14,10 @@ class Exercise {
 
   Exercise(this._enbr, this._ename, this._weight, this._reps, this._sets);
 
+  bool belongsToWorkout(String workoutName) {
+    return _ename.toLowerCase().contains(workoutName.toLowerCase());
+  }
+
   @override
   String toString() {
     return '$_ename\n$_weight kg-$_reps reps -$_sets sets';
@@ -74,9 +78,8 @@ void searchExercise(Function(String text) update, String ename) async {
   }
 }
 
-
 class ShowExercises extends StatelessWidget {
-  const ShowExercises({Key? key}) : super(key: key);
+  const ShowExercises({super.key});
 
   @override
   Widget build(BuildContext context) {
