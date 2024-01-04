@@ -45,12 +45,17 @@ class _SearchExercisesState extends State<SearchExercises> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Search for the Exercise'),
+        title: const Text('Search for the Exercise',
+          style: TextStyle(
+              fontSize: 20,
+              color: Colors.white54
+          ),
+        ),
         centerTitle: true,
 
       ),
       body: Center(child: Column(children: [
-        const SizedBox(height: 10),
+        const SizedBox(height: 200),
         SizedBox(
             width: 200,
             child: TextField(
@@ -62,7 +67,7 @@ class _SearchExercisesState extends State<SearchExercises> {
                 )
             )
         ),
-        const SizedBox(height: 10),
+        const SizedBox(height: 20),
         ElevatedButton(
             onPressed: getExercise,
             child: const Text(
